@@ -1,0 +1,29 @@
+{
+  "version": "2.6.2",
+  "release_version": "1.0",
+  "released_at": "2026-10-13",
+  "summary": {
+    "title": "TFG - App Flask DevSecOps",
+    "owner": "Daniel Zurita",
+    "description": "Modelo de amenazas STRIDE de la aplicación web vulnerable del TFG (Flask + SQLite) con SQLi, XSS y subida insegura de ficheros.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD App Flask",
+        "diagramType": "STRIDE",
+        "placeholder": "Descripción de nuevo diagrama STRIDE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Diagrama de flujo de datos de la app con frontera de confianza"
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
