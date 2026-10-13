@@ -68,6 +68,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -151,7 +152,6 @@
               ]
             },
             "id": "1c24fa6d-8c6d-45ca-beb0-29495b8aadcf",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "Usuario",
@@ -185,6 +185,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -268,7 +269,6 @@
               ]
             },
             "id": "54b316ee-0dbb-41d4-9832-75d69da85e0e",
-            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "App Flask\n",
@@ -308,6 +308,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -391,7 +392,6 @@
               ]
             },
             "id": "5b719d68-b963-46d5-87e7-cbefa6b8d0cd",
-            "zIndex": 3,
             "data": {
               "type": "tm.Store",
               "name": "BD SQLite",
@@ -412,7 +412,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -433,13 +434,32 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
+              "threats": [
+                {
+                  "id": "b1c53b00-ef6b-49c9-9625-cee05915d0e9",
+                  "title": "Inyección SQL manipula la consulta",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Un atacante inyecta SQL por el parámetro 'id' para leer o modificar la base de datos.",
+                  "mitigation": "Consultas parametrizadas + validación de entrada.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
             },
             "labels": [
               "Data Flow"
@@ -452,7 +472,13 @@
             "target": {
               "cell": "54b316ee-0dbb-41d4-9832-75d69da85e0e",
               "port": "6d56931b-3c7b-4e4e-b001-8765c422afcd"
-            }
+            },
+            "vertices": [
+              {
+                "x": 400,
+                "y": 260
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -506,6 +532,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 3
   }
 }
