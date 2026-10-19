@@ -1,0 +1,40 @@
+name: DevSecOps Pipeline
+on: [push, pull_request]
+
+jobs:
+  sast:
+    name: SAST - Semgrep
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Analisis estatico (Semgrep)
+        run: |
+          pip install semgrep
+          semgrep --config=auto . || true
+
+  sca:
+    name: SCA - Dependencias
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Analisis de dependencias (pip-audit)
+        run: |
+          pip install pip-audit
+          pip-audit -r requirements.txt || true
+
+  secrets:
+    name: Deteccion de secretos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Buscar secretos (Gitleaks)
+        run: |
+          docker run -v ${{ github.workspace }}:/repo zricethezav/gitleaks:latest detect --source="/repo" -v || true
